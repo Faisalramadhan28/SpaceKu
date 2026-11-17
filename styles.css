@@ -1,0 +1,303 @@
+:root {
+/*-- Warna Utama --*/
+  --color-primary: #2f5bff;
+  --color-primary-soft: #e3e9fb;
+  --color-bg: #f3f6fc;
+  --color-surface: #fff;
+  --color-text: #0b0b0f;
+  --color-muted: #5a6275;
+
+/*-- Warna Status --*/
+  --status-tersedia-bg: #def5e5;
+  --status-tersedia-fg: #1a7f37;
+  --status-perbaikan-bg: #ffe8d3;
+  --status-perbaikan-fg: #9a4a07;
+  --status-terisi-bg: #fde2e2;
+  --status-terisi-fg: #c62828;
+
+/*-- Jarak yang dipakai --*/
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 2px 4px rgb(20 30 60 / 15%), 0 6px 12px rgb(20 30 60 / 8%);
+  --nav-height: 72px;
+}
+
+/* untuk reset dan aturan umum agar tampilan konsisten di semua browser */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+ 
+body {
+  margin: 0;
+  background: #101218;
+  color: var(--color-text);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+ 
+h1, h2, p, ul {
+  margin: 0;
+  padding: 0;
+}
+ 
+ul {
+  list-style: none;
+}
+ 
+button,
+input {
+  font: inherit;
+}
+ 
+button {
+  cursor: pointer;
+}
+ 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+ 
+/* penanda fokus untuk pengguna keyboard */
+:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+ 
+/* untuk memastikan atribut hidden selalu menyembunyikan elemen (dipakai filter JS) */
+[hidden] {
+  display: none !important;
+}
+ 
+/* Disembunyikan dari tampilan, tetap terbaca screen reader */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+ 
+/* kerangka halaman berbentuk layar HP di tengah */
+.app {
+  max-width: 390px;
+  min-height: 100vh;
+  margin-inline: auto;
+  background: var(--color-bg);
+}
+ 
+/* Area isi; padding bawah menyisakan ruang untuk bottom nav */
+.content {
+  padding: var(--space-3) var(--space-4) calc(var(--nav-height) + var(--space-5));
+}
+ 
+/* Desain card putih berbayang*/
+.icon-btn--raised,
+.search__input,
+.room-card {
+  background: var(--color-surface);
+  box-shadow: var(--shadow);
+}
+
+/* Komponen 1: Header (tombol kembali, judul, tombol urut) */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+}
+ 
+.topbar__title {
+  flex: 1;
+  font-size: 1.0625rem;
+}
+ 
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  font-size: 1.5rem;
+}
+ 
+/* Tampilan ketika tombol urut aktif */
+.icon-btn[aria-pressed="true"] {
+  background: var(--color-primary);
+  color: #fff;
+}
+ 
+/* Komponen 2: Form pencarian (ikon diletakkan di dalam kotak input) */
+.search {
+  position: relative;
+  margin-bottom: var(--space-4);
+}
+ 
+.search__icon {
+  position: absolute;
+  top: 50%;
+  left: var(--space-4);
+  transform: translateY(-50%);
+}
+ 
+.search__input {
+  width: 100%;
+  padding: var(--space-3) var(--space-4) var(--space-3) 48px;
+  border: 0;
+  border-radius: var(--radius);
+}
+ 
+/* Komponen 3: Filter status (chip) dan teks jumlah hasil */
+.chips {
+  display: flex;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+ 
+.chip {
+  flex: 1;
+  padding: var(--space-1) var(--space-3);
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary-soft);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+ 
+/* Tampilan chip yang sedang dipilih */
+.chip[aria-pressed="true"] {
+  background: var(--color-primary);
+  color: #fff;
+}
+ 
+.result-count {
+  margin-bottom: var(--space-2);
+  color: var(--color-muted);
+  font-size: 0.75rem;
+}
+ 
+/* Komponen 4: Kartu ruangan dan status ruangan*/
+.room-list {
+  display: grid;
+  gap: var(--space-3);
+}
+ 
+/* Card memakai grid: foto, nama, jam, status dan panah*/
+.room-card {
+  display: grid;
+  grid-template-columns: 72px 1fr auto;
+  grid-template-areas:
+    "img body badge"
+    "img body go";
+  align-items: center;
+  gap: 0 var(--space-3);
+  padding: var(--space-2);
+  border-radius: var(--radius);
+}
+ 
+.room-card__img {
+  grid-area: img;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+}
+ 
+.room-card__body {
+  grid-area: body;
+}
+ 
+.room-card__name {
+  font-size: 1.0625rem;
+  font-weight: 800;
+}
+ 
+.room-card__time {
+  margin-top: var(--space-1);
+  color: var(--color-muted);
+  font-size: 0.6875rem;
+}
+ 
+.room-card__badge {
+  grid-area: badge;
+  justify-self: end;
+}
+ 
+.room-card__go {
+  grid-area: go;
+  justify-self: end;
+  color: var(--color-primary);
+  font-size: 1.75rem;
+  line-height: 1;
+}
+ 
+/* Status: satu aturan dasar, warna diisi sesuai dengan statusnya*/
+.badge {
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-sm);
+  background: var(--badge-bg);
+  color: var(--badge-fg);
+  font-size: 0.625rem;
+  font-weight: 600;
+}
+ 
+.badge--tersedia {
+  --badge-bg: var(--status-tersedia-bg);
+  --badge-fg: var(--status-tersedia-fg);
+}
+ 
+.badge--perbaikan {
+  --badge-bg: var(--status-perbaikan-bg);
+  --badge-fg: var(--status-perbaikan-fg);
+}
+ 
+.badge--terisi {
+  --badge-bg: var(--status-terisi-bg);
+  --badge-fg: var(--status-terisi-fg);
+}
+ 
+/* Pesan saat hasil pencarian kosong */
+.empty {
+  padding: var(--space-5) var(--space-4);
+  color: var(--color-muted);
+  text-align: center;
+}
+ 
+/* Komponen 5: Bottom navigation*/
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 390px;
+  height: var(--nav-height);
+  border-radius: var(--space-5) var(--space-5) 0 0;
+  background: var(--color-surface);
+  transform: translateX(-50%);
+}
+ 
+.bottom-nav__link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  padding: 0 var(--space-3);
+  border-bottom: 3px solid transparent;
+  color: var(--color-primary);
+  font-size: 0.6875rem;
+  font-weight: 700;
+}
+ 
+/* Penanda ketika menu bottom nav aktif */
+.bottom-nav__link[aria-current="page"] {
+  border-bottom-color: var(--color-primary);
+}

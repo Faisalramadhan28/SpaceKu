@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SpaceKu: cari dan pinjam ruangan kampus dengan mudah.">
+    <title>Cari Ruangan - SpaceKu</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="app">
+        <!-- Komponen 1 : Header -->
+        <header class="topbar">
+        <button type="button" class="icon-btn" id="btn-back" aria-label="Kembali">&larr;</button>
+        <h1 class="topbar__title">Cari Ruangan</h1>
+        <button type="button" class="icon-btn icon-btn--raised" id="btn-sort" aria-label="Urutkan nama A-Z" aria-pressed="false">&#8645;</button>
+        </header>
+
+        <main class="content">
+            <!-- Komponen 2 : Form Pencarian -->
+            <div class="search" role="search">
+                <label class="visually-hidden" for="search-input">Cari nama ruangan</label>
+                <span class="search__icon" aria-hidden="true">&#128269;</span>
+                <input class="search__input" id="search-input" type="search"
+                    placeholder="Cari nama ruangan..." autocomplete="off">
+            </div>
+
+            <!-- Komponen 3 : Filter Status Ruangan -->
+            <div class="chips" role="group" aria-label="Filter status ruangan">
+                <button type="button" class="chip" data-filter="semua" aria-pressed="true">Semua</button>
+                <button type="button" class="chip" data-filter="tersedia" aria-pressed="false">Tersedia</button>
+                <button type="button" class="chip" data-filter="terisi" aria-pressed="false">Terisi</button>
+                <button type="button" class="chip" data-filter="perbaikan" aria-pressed="false">Perbaikan</button>
+            </div>
+
+            <p class="result-count" id="result-count" role="status"></p>
+
+            <!-- Komponen 4 : Kartu Ruangan -->
+            <ul class="room-list" id="room-list">
+                <li class="room-card" data-status="tersedia" data-name="Ruangan Nebula">
+                <img class="room-card__img" src="assets/Ruangan Nebula.jpg" alt="Foto Ruangan Nebula" width="72" height="56">
+                <div class="room-card__body">
+                    <h2 class="room-card__name">Ruangan Nebula</h2>
+                    <p class="room-card__time"><span aria-hidden="true">&#128343;</span> <time>08.00 - 10.00</time></p>
+                </div>
+                <span class="badge badge--tersedia room-card__badge">Tersedia</span>
+                <span class="room-card__go" aria-hidden="true">&rsaquo;</span>
+                </li>
+
+                <li class="room-card" data-status="perbaikan" data-name="Lab Nova">
+                <img class="room-card__img" src="assets/Lab Nova.jpg" alt="Foto Lab Nova" width="72" height="56">
+                <div class="room-card__body">
+                    <h2 class="room-card__name">Lab Nova</h2>
+                    <p class="room-card__time"><span aria-hidden="true">&#128343;</span> <time>08.00 - 10.00</time></p>
+                </div>
+                <span class="badge badge--perbaikan room-card__badge">Perbaikan</span>
+                <span class="room-card__go" aria-hidden="true">&rsaquo;</span>
+                </li>
+
+                <li class="room-card" data-status="tersedia" data-name="Lab Orion">
+                <img class="room-card__img" src="assets/Lab Orion.jpg" alt="Foto Lab Orion" width="72" height="56">
+                <div class="room-card__body">
+                    <h2 class="room-card__name">Lab Orion</h2>
+                    <p class="room-card__time"><span aria-hidden="true">&#128343;</span> <time>09.00 - 10.00</time></p>
+                </div>
+                <span class="badge badge--tersedia room-card__badge">Tersedia</span>
+                <span class="room-card__go" aria-hidden="true">&rsaquo;</span>
+                </li>
+
+                <li class="room-card" data-status="tersedia" data-name="Lab Matrix">
+                <img class="room-card__img" src="assets/Lab Matrix.jpg" alt="Foto Lab Matrix" width="72" height="56">
+                <div class="room-card__body">
+                    <h2 class="room-card__name">Lab Matrix</h2>
+                    <p class="room-card__time"><span aria-hidden="true">&#128343;</span> <time>09.00 - 11.00</time></p>
+                </div>
+                <span class="badge badge--tersedia room-card__badge">Tersedia</span>
+                <span class="room-card__go" aria-hidden="true">&rsaquo;</span>
+                </li>
+
+                <li class="room-card" data-status="terisi" data-name="Lab Aegis">
+                <img class="room-card__img" src="assets/Lab Aegis.jpg" alt="Foto Lab Aegis" width="72" height="56">
+                <div class="room-card__body">
+                    <h2 class="room-card__name">Lab Aegis</h2>
+                    <p class="room-card__time"><span aria-hidden="true">&#128343;</span> <time>09.00 - 11.00</time></p>
+                </div>
+                <span class="badge badge--terisi room-card__badge">Terisi</span>
+                <span class="room-card__go" aria-hidden="true">&rsaquo;</span>
+                </li>
+            </ul>
+
+            <!-- Untuk Status yang tidak ditemukan -->
+            <p class="empty" id="empty-state" hidden>Ruangan tidak ditemukan. Coba kata kunci atau filter lain.</p>
+
+            <!-- Komponen 5 : Bottom Navigation -->
+            <nav class="bottom-nav" aria-label="Navigasi utama">
+            <a class="bottom-nav__link" aria-disabled="true">
+                <span aria-hidden="true">&#127968;</span><span>Beranda</span>
+            </a>
+            <a class="bottom-nav__link" href="#ruangan" aria-current="page">
+                <span aria-hidden="true">&#128269;</span><span>Ruangan</span>
+            </a>
+            <a class="bottom-nav__link" aria-disabled="true">
+                <span aria-hidden="true">&#128339;</span><span>Riwayat</span>
+            </a>
+            <a class="bottom-nav__link" aria-disabled="true">
+                <span aria-hidden="true">&#128100;</span><span>Akun</span>
+            </a>
+            </nav>
+        </main>
+    </div>
+</body>
+</html>
