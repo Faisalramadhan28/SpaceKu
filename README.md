@@ -11,20 +11,20 @@ Spaceku adalah aplikasi yang memudahkan akses dan peminjaman ruangan kampus. Rep
 4. Jumlah Hasil : Akan muncul pesan khusus bila ruangan ditemukan atau tidak ditemukan.
 5. Menu navigasi bawah : Sebagai penanda halaman yang sedang aktif.
 
-# Struktur Proyek
-
+## Struktur Proyek
+```
 SpaceKu Project/
--> index.html                   # struktur dari halaman spaceku
--> styles.css                   # tampilan untuk halaman spaceku
--> script.js                    # interaktivitas untuk fitur pencarian, filter dan urutan
--> assets/                      # foto ruangan
-    -> Lab Aegis.jpg
-    -> Lab Matrix.jpg
-    -> Lab Nova.jpg
-    -> Lab Orion.jpg
-    -> Ruangan Nebula.jpg
--> README.md                    # dokumentasi proyek spaceku
-
+├── index.html          # struktur halaman SpaceKu
+├── styles.css          # tampilan halaman SpaceKu
+├── script.js           # interaktivitas: pencarian, filter, dan urutan
+├── assets/             # foto ruangan
+│   ├── Lab Aegis.jpg
+│   ├── Lab Matrix.jpg
+│   ├── Lab Nova.jpg
+│   ├── Lab Orion.jpg
+│   └── Ruangan Nebula.jpg
+└── README.md           # dokumentasi proyek SpaceKu
+```
 # Komponen
 1. Header
 -> Isi : Tombol kembali, Judul dan Ikon Urutkan.
